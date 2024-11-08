@@ -1,0 +1,63 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:tutdesk.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="tutdesk.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        
+        xmlns:components="clr-namespace:tutdesk.Views"
+        Title="tutdesk"
+        Background="#F5F6F7"
+        MinHeight="300" MinWidth="100">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+
+
+
+
+
+        <DockPanel>
+        <Border DockPanel.Dock="Top" CornerRadius="30" Height="40" Margin="10" Background="White">
+            <ListBox ItemsSource="{Binding Items}" HorizontalAlignment="Center" SelectedItem="{Binding SelectedListItem}">
+
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                
+                <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type vm:ListItemTemplate}">
+
+                            
+                            <!-- <PathIcon Data="{Binding ListItemIcon}" Width="30"/> -->
+                            <!-- <Image Source="avares://tutdesk/Assets/Icons/folder.png" Width="20"/> -->
+                            <Image Source="{Binding ListItemIcon}" Width="18"/>
+
+                        </DataTemplate>
+                </ListBox.ItemTemplate>
+
+                
+
+
+
+            </ListBox>
+        </Border>
+
+
+
+        <TransitioningContentControl Content="{Binding CurrentPage}">
+        
+        
+        </TransitioningContentControl>
+
+    </DockPanel>
+
+</Window>

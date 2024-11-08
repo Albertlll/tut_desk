@@ -1,0 +1,23 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="tutdesk.App"
+             xmlns:local="using:tutdesk"
+             RequestedThemeVariant="Light">
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <FluentTheme />
+    </Application.Styles>
+
+    <Application.Resources>
+        <FontFamily x:Key="Montserrat">avares://tutdesk/Assets/Fonts#Montserrat</FontFamily>
+        <Bitmap x:Key="DownloadsIcon">avares://tutdesk/Assets/folder.png</Bitmap>
+        <Bitmap x:Key="HomeIcon">avares://tutdesk/Assets/house.png</Bitmap>
+
+    </Application.Resources>
+
+
+</Application>

@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" MaxWidth="400" MaxHeight="220"
+             x:Class="tutdesk.Views.Components.CourseCard" CornerRadius="30" Background="White"
+             xmlns:local="clr-namespace:tutdesk" ClipToBounds="True" MinWidth="1" MinHeight="1">
+
+             <!-- <UserControl.Resources>
+                    <local:CoursePercentConverter x:Key="myConverter"/>
+                </UserControl.Resources> -->
+
+             <Grid RowDefinitions="3*, *" ColumnDefinitions="*" ClipToBounds="True" MinWidth="1">
+                <Border ClipToBounds="True" Margin="20 20 20 0" >
+                   <Image Stretch="Uniform" Source="/Assets/Images/image.png"/>  
+                </Border>
+      <Viewbox Grid.Row="1" Stretch="Uniform">
+            <TextBlock TextAlignment="Center" Width="300" Text="vfdvdfvdf" FontSize="15" FontFamily="{StaticResource Montserrat}" TextWrapping="Wrap"/>
+        </Viewbox>
+
+            </Grid>
+
+
+
+</UserControl>
