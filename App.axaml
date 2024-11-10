@@ -2,7 +2,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="tutdesk.App"
              xmlns:local="using:tutdesk"
+             xmlns:converters="using:tutdesk.Converters"
+			 
              RequestedThemeVariant="Light">
+	
 
     <Application.DataTemplates>
         <local:ViewLocator/>
@@ -16,7 +19,7 @@
         <FontFamily x:Key="Montserrat">avares://tutdesk/Assets/Fonts#Montserrat</FontFamily>
         <Bitmap x:Key="DownloadsIcon">avares://tutdesk/Assets/folder.png</Bitmap>
         <Bitmap x:Key="HomeIcon">avares://tutdesk/Assets/house.png</Bitmap>
-
+		<converters:PercentageToWidthConverter x:Key="PercentageToWidthConverter"/>
     </Application.Resources>
 
 
