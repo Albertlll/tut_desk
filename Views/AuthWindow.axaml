@@ -1,0 +1,63 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="tutdesk.AuthWindow"
+        Title="AuthWindow">
+	<Window.Styles>
+		<Style Selector="TextBlock">
+			<Setter Property="Margin" Value="15"/>
+			<Setter Property="Foreground" Value="Black"/>
+			<Setter Property="FontFamily" Value="Onest"/>
+			<Setter Property="FontWeight" Value="SemiBold"/>
+			<Setter Property="FontSize" Value="20"/>
+		</Style>
+		<Style Selector="TextBox">
+			<Setter Property="Height" Value="40"/>
+			<Setter Property="Width" Value="280"/>
+			<Setter Property="LineHeight" Value="25"/>
+			
+			<Setter Property="Margin" Value="15"/>
+			<Setter Property="CornerRadius" Value="25"/>
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="FontFamily" Value="Onest"/>
+			<Setter Property="MaxLines" Value="1"/>
+			<Setter Property="BorderBrush" Value="#95C1FF"/>
+			<Setter Property="Foreground" Value="Black"/>
+		</Style>
+		<Style Selector="Button">
+			<Setter Property="Background" Value="#408FFF"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="FontSize" Value="18"/>
+			<Setter Property="FontWeight" Value="Normal"/>
+			<Setter Property="Height" Value="40"/>
+			<Setter Property="Width" Value="150"/>
+			<Setter Property="CornerRadius" Value="25"/>
+			<Setter Property="Margin" Value="20"/>
+		</Style>
+	</Window.Styles>
+	<DockPanel Background="#F5F6F7">
+		<Border Width="600" Height="400" ClipToBounds="True" CornerRadius="30" Background="White">
+			<StackPanel DockPanel.Dock="Top" Width="350">
+				<TextBlock Foreground="Black" FontSize="36" FontWeight="Heavy" HorizontalAlignment="Center" Margin="0 20">
+					Вход в систему
+				</TextBlock>
+				<TextBlock Foreground="Black" Margin="30 0">
+					Введите email:
+				</TextBlock>
+				<TextBox>
+				</TextBox>
+				<TextBlock Foreground="Black" Margin="30 0">
+					Введите пароль:
+				</TextBlock>
+				<TextBox PasswordChar="*">
+				</TextBox>
+				<Button HorizontalAlignment="Center" Content="Войти">
+				</Button>
+			</StackPanel>
+		</Border>
+	</DockPanel>
+</Window>
