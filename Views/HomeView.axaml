@@ -8,7 +8,7 @@
              x:Class="tutdesk.Views.HomeView"
              x:DataType="vm:HomeViewModel">
 
-    <DockPanel Background="#555555" Margin="10">
+    <DockPanel Margin="10">
 
         <Viewbox DockPanel.Dock="Top" Stretch="Uniform" Height="60">
             <TextBlock TextAlignment="Center" 
@@ -21,21 +21,24 @@
         </Viewbox>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Courses}">
-                <ItemsControl.ItemsPanel>
+            <ListBox ItemsSource="{Binding Courses}" Background="Transparent">
+                
+                <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel HorizontalAlignment="Center"/> <!-- Использование WrapPanel -->
                     </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
+                </ListBox.ItemsPanel>
 
-                <ItemsControl.ItemTemplate>
+                <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <components:CourseCard /> <!-- Использование CourseCard -->
+                        <Border Margin="10" CornerRadius="30"> 
+                            <components:CourseCard /> <!-- Использование CourseCard -->
+                        </Border>
                     </DataTemplate>
-                </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
-                </ScrollViewer>
+        </ScrollViewer>
 
     </DockPanel>
 </UserControl>
