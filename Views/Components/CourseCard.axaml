@@ -11,14 +11,38 @@
              Width="400"
              x:DataType="models:Course"> <!-- Укажите правильное пространство имен -->
 
-               <Grid RowDefinitions="3*, *" ColumnDefinitions="*" ClipToBounds="True" MinWidth="1">
-                  <Border ClipToBounds="True" Margin="20 20 20 0">
-                        <Image Stretch="Uniform" Source="{Binding Image}"/>
-                  </Border>
+	<Grid RowDefinitions="3*, Auto, Auto" ColumnDefinitions="*">
 
-                  <Viewbox Grid.Row="1" Stretch="Uniform">
-                        <TextBlock TextAlignment="Center" Width="300" Text="{Binding Title}" FontSize="15" FontFamily="{StaticResource Montserrat}" TextWrapping="Wrap"/>
-                  </Viewbox>
-               </Grid>
+		<!-- Контейнер для изображения с соотношением 16:9 -->
+		<Grid Grid.Row="0" Margin="10">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="16*"/>
+				<RowDefinition Height="9*"/>
+			</Grid.RowDefinitions>
+			<Image Grid.RowSpan="2" Source="{Binding Image}" Stretch="UniformToFill" ClipToBounds="True"/>
+		</Grid>
+
+		<!-- Название курса -->
+		<TextBlock Grid.Row="1" TextAlignment="Center" Margin="10,5,10,5"
+                   Text="{Binding Title}" FontSize="18" FontFamily="{StaticResource Montserrat}"
+                   TextWrapping="Wrap" />
+
+		<!-- Прогресс бар с процентом -->
+		<Grid Grid.Row="2" Margin="20,10,20,20" ColumnDefinitions="*, Auto">
+			<!-- Прогресс бар Фон (голубой) -->
+			<Border Background="#E0F7FA" CornerRadius="5">
+				<Grid>
+					<!-- Прогресс бар (синий прогресс) -->
+					<Border Background="#2196F3" CornerRadius="5"
+                            Width="{Binding Progress, Converter={StaticResource PercentageToWidthConverter}}"/>
+				</Grid>
+			</Border>
+
+			<!-- Процентное значение справа от ProgressBar -->
+			<TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"
+                       Text="{Binding Progress, StringFormat='{}{0}%'}" FontSize="14"/>
+		</Grid>
+
+	</Grid>
 
 </UserControl>
