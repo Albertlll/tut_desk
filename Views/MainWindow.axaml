@@ -3,7 +3,6 @@
         xmlns:vm="using:tutdesk.ViewModels"
         x:Class="tutdesk.Views.MainWindow"
         Title="TutDesk"
-        Background="#F5F6F7"
         MinHeight="400" MinWidth="600"
         x:DataType="vm:MainWindowViewModel">
 

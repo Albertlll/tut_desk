@@ -8,7 +8,7 @@
              x:Class="tutdesk.Views.HomeView"
              x:DataType="vm:HomeViewModel">
 
-    <DockPanel Background="#f9f9f9" Margin="10">
+    <DockPanel Background="#555555" Margin="10">
 
         <Viewbox DockPanel.Dock="Top" Stretch="Uniform" Height="60">
             <TextBlock TextAlignment="Center" 
@@ -20,22 +20,22 @@
                        FontWeight="Bold"/>
         </Viewbox>
 
-        <!-- Используйте ItemsSource вместо Items -->
-        <ItemsControl ItemsSource="{Binding Courses}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Courses}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Center"/> <!-- Использование WrapPanel -->
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
 
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel HorizontalAlignment="Center"/> <!-- Использование WrapPanel -->
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <components:CourseCard /> <!-- Использование CourseCard -->
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <components:CourseCard /> <!-- Использование CourseCard -->
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
         </ItemsControl>
+
+                </ScrollViewer>
 
     </DockPanel>
 </UserControl>
