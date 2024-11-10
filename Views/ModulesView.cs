@@ -1,15 +1,15 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using tutdesk.ViewModels;
+using tutdesk.Models;
 
 namespace tutdesk.Views;
 
-public partial class HomeView : UserControl
+public partial class ModulesView : UserControl
 {
-    public HomeView()
+    public ModulesView(Course course)
     {
         InitializeComponent();
-        DataContext = new HomeViewModel();
+        DataContext = course;
     }
 }

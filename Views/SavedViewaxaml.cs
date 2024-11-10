@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace tutdesk.Views;
 
-public partial class SavedViewModel : UserControl
+public partial class SavedView : UserControl
 {
-    public SavedViewModel()
+    public SavedView()
     {
         InitializeComponent();
     }

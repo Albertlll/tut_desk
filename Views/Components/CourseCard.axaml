@@ -3,23 +3,22 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" MaxWidth="400" MaxHeight="220"
-             x:Class="tutdesk.Views.Components.CourseCard" CornerRadius="30" Background="White"
-             xmlns:local="clr-namespace:tutdesk" ClipToBounds="True" MinWidth="1" MinHeight="1">
+             x:Class="tutdesk.Views.Components.CourseCard" 
+             CornerRadius="30" Background="White"
+             ClipToBounds="True" MinWidth="1" MinHeight="1"
+             xmlns:models="using:tutdesk.Models" 
+             Height="200"
+             Width="400"
+             x:DataType="models:Course"> <!-- Укажите правильное пространство имен -->
 
-             <!-- <UserControl.Resources>
-                    <local:CoursePercentConverter x:Key="myConverter"/>
-                </UserControl.Resources> -->
+               <Grid RowDefinitions="3*, *" ColumnDefinitions="*" ClipToBounds="True" MinWidth="1">
+                  <Border ClipToBounds="True" Margin="20 20 20 0">
+                        <Image Stretch="Uniform" Source="{Binding Image}"/>
+                  </Border>
 
-             <Grid RowDefinitions="3*, *" ColumnDefinitions="*" ClipToBounds="True" MinWidth="1">
-                <Border ClipToBounds="True" Margin="20 20 20 0" >
-                   <Image Stretch="Uniform" Source="/Assets/Images/image.png"/>  
-                </Border>
-      <Viewbox Grid.Row="1" Stretch="Uniform">
-            <TextBlock TextAlignment="Center" Width="300" Text="vfdvdfvdf" FontSize="15" FontFamily="{StaticResource Montserrat}" TextWrapping="Wrap"/>
-        </Viewbox>
-
-            </Grid>
-
-
+                  <Viewbox Grid.Row="1" Stretch="Uniform">
+                        <TextBlock TextAlignment="Center" Width="300" Text="{Binding Title}" FontSize="15" FontFamily="{StaticResource Montserrat}" TextWrapping="Wrap"/>
+                  </Viewbox>
+               </Grid>
 
 </UserControl>

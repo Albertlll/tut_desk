@@ -1,58 +1,57 @@
-﻿
-using System;
+﻿using ReactiveUI;
 using System.Collections.ObjectModel;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Media;
-using Avalonia.Media.Imaging;
-using CommunityToolkit.Mvvm.ComponentModel;
-using tutdesk.Helpers;
+
+
+using tutdesk.Views;
+
 
 namespace tutdesk.ViewModels;
-
-public partial class MainWindowViewModel : ViewModelBase
+public class MainWindowViewModel : ReactiveObject
 {
-    public string Greeting { get; } = "Welcome to Avalonia!";
+    private object _currentPage;
+    private PageViewModel _selectedPage;
 
-    [ObservableProperty]
-    private ListItemTemplate? _selectedListItem;
+    public ObservableCollection<PageViewModel> Pages { get; } = new ObservableCollection<PageViewModel>();
 
-     partial void OnSelectedListItemChanged(ListItemTemplate? value)
-     {
-     if (value is null) return;
-         var instance = Activator.CreateInstance(value.ModelType);
-         if (instance is null) return;
-         CurrentPage = (ViewModelBase)instance;
-     }
-
-
-    [ObservableProperty]
-    private ViewModelBase _currentPage = new HomeViewModel();
-
-    public ObservableCollection<ListItemTemplate> Items { get; } = new()
+    public object CurrentPage
     {
-        // new ListItemTemplate(typeof(HomeViewModel), "house.png"),
-        // new ListItemTemplate(typeof(SavedViewModel), "folder.png"),
-        new ListItemTemplate(typeof(SavedViewModel), "avares://tutdesk/Assets/Icons/house.png"),
-        new ListItemTemplate(typeof(HomeViewModel), "avares://tutdesk/Assets/Icons/folder.png"),
-    };
-
-}
-
-public class ListItemTemplate {
-
-    public ListItemTemplate(Type type, string icon) {
-        ModelType = type;
-        Label = type.Name;
-        ListItemIcon  = ImageHelper.LoadFromResource(new Uri(icon));
-;
+        get => _currentPage;
+        set => this.RaiseAndSetIfChanged(ref _currentPage, value);
     }
 
-    // public string ListItemIcon { get; }
-    public Bitmap? ListItemIcon { get; }
-    public Type ModelType { get; }
-    public string Label { get; }
+    public PageViewModel SelectedPage
+    {
+        get => _selectedPage;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _selectedPage, value);
+            if (value != null)
+            {
+                CurrentPage = value.View; // Переход на выбранную страницу
+            }
+        }
+    }
 
-    
-    
+    public MainWindowViewModel()
+    {
+        // Инициализация страниц
+        Pages.Add(new PageViewModel("Главная", new HomeView()));
+        Pages.Add(new PageViewModel("Курсы", new SavedView()));
+        // Pages.Add(new PageViewModel("Настройки", new SettingsView()));
+
+        // Установка начальной страницы
+        SelectedPage = Pages[0]; // Выбор первой страницы по умолчанию
+    }
+}
+
+public class PageViewModel
+{
+    public string Title { get; }
+    public object View { get; }
+
+    public PageViewModel(string title, object view)
+    {
+        Title = title;
+        View = view;
+    }
 }
