@@ -1,94 +1,38 @@
 using ReactiveUI;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using tutdesk.Helpers;
 using tutdesk.Models;
+using tutdesk.Services;
+using tutdesk.Services.Responses;
 
 namespace tutdesk.ViewModels
 {
     public class HomeViewModel : ReactiveObject
     {
         public ObservableCollection<Course> Courses { get; } = new ObservableCollection<Course>();
-
-        public HomeViewModel()
+        
+        private readonly ICoursesService coursesService;
+        public HomeViewModel(ICoursesService coursesService)
         {
-
-            ImageHelper.LoadFromWeb(new Uri("https://upload.wikimedia.org/wikipedia/commons/4/41/NewtonsPrincipia.jpg")).ContinueWith((task) => {
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
-
+            this.coursesService = coursesService;
+            this.coursesService.GetUserCourses("user").ContinueWith((task) =>
+            {
+                List<GetCourseResponse>? courses = task.Result;
+                if (courses is null)
+                {
+                    return;
+                }
+                foreach (var response in courses)
+                {
+                    ImageHelper.LoadFromWeb(new Uri(response.avatarUrl)).ContinueWith((task) =>
+                    {
+                        Courses.Add(new Course { Title = response.title, Progress = response.progressPercent, Image = task.Result });
+                    });
+                }
             });
-            // Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = ImageHelper.LoadFromWeb(new Uri("https://upload.wikimedia.org/wikipedia/commons/4/41/NewtonsPrincipia.jpg")).Result});
-            // Courses.Add(new Course { Title = "Курс 2", Description = "Описание курса 2", Image = ImageHelper.LoadFromWeb(new Uri("https://upload.wikimedia.org/wikipedia/commons/4/41/NewtonsPrincipia.jpg")).Result});
-            // Courses.Add(new Course { Title = "Курс 3", Description = "Описание курса 2", Image = ImageHelper.LoadFromWeb(new Uri("https://upload.wikimedia.org/wikipedia/commons/4/41/NewtonsPrincipia.jpg")).Result});
-
         }
     }
 }

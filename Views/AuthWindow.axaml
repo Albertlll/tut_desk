@@ -4,7 +4,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="tutdesk.AuthWindow"
-        Title="AuthWindow">
+        xmlns:vm="using:tutdesk.ViewModels"
+		Title="AuthWindow"
+		x:DataType="vm:AuthViewModel">
 	<Window.Styles>
 		<Style Selector="TextBlock">
 			<Setter Property="Margin" Value="15"/>
@@ -17,7 +19,7 @@
 			<Setter Property="Height" Value="40"/>
 			<Setter Property="Width" Value="280"/>
 			<Setter Property="LineHeight" Value="25"/>
-			
+
 			<Setter Property="Margin" Value="15"/>
 			<Setter Property="CornerRadius" Value="25"/>
 			<Setter Property="FontSize" Value="16"/>
@@ -48,15 +50,17 @@
 				<TextBlock Foreground="Black" Margin="30 0">
 					Введите email:
 				</TextBlock>
-				<TextBox>
+				<TextBox x:Name="EmailTextBox" Text="{Binding Email}" >
 				</TextBox>
 				<TextBlock Foreground="Black" Margin="30 0">
 					Введите пароль:
 				</TextBlock>
-				<TextBox PasswordChar="*">
+				<TextBox x:Name="PasswordTextBox" PasswordChar="*" Text="{Binding Password}">
 				</TextBox>
-				<Button HorizontalAlignment="Center" Content="Войти">
+		
+				<Button HorizontalAlignment="Center" Content="Войти" Command="{Binding LoginCommand}">
 				</Button>
+				<TextBlock Text="{Binding ErrorMessage}" HorizontalAlignment="Center" Margin="5" Foreground="IndianRed"/>
 			</StackPanel>
 		</Border>
 	</DockPanel>
