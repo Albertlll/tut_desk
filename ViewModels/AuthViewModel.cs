@@ -9,6 +9,7 @@ using CommunityToolkit.Mvvm.Input;
 using ReactiveUI;
 using tutdesk.Models;
 using tutdesk.Services;
+using tutdesk.Services.Impl;
 
 namespace tutdesk.ViewModels
 {
@@ -34,6 +35,11 @@ namespace tutdesk.ViewModels
                 return;
             }
             ErrorMessage = "";
+
+            CurrentUser currentUser = new CurrentUser();
+            currentUser.Id = authResult.userId;
+            currentUser.Email = authResult.email;
+            UserService.SaveUser(currentUser);
         }
         
     }

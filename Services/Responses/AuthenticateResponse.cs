@@ -2,9 +2,9 @@
 {
     public record AuthenticateResponse
     (
-        string Id,
-        string Email,
-        string Password
+        string userId,
+        string username,
+        string email
     )
     {
 
