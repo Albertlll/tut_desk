@@ -11,6 +11,6 @@ public partial class HomeView : UserControl
     public HomeView()
     {
         InitializeComponent();
-        DataContext = new HomeViewModel(new CoursesServiceImpl(new System.Net.Http.HttpClient()));
+        DataContext = new CoursesViewModel(new CoursesServiceImpl(new System.Net.Http.HttpClient()));
     }
 }
