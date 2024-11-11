@@ -10,12 +10,12 @@ using tutdesk.Services.Responses;
 
 namespace tutdesk.ViewModels
 {
-    public class HomeViewModel : ReactiveObject
+    public class CoursesViewModel : ReactiveObject
     {
         public ObservableCollection<Course> Courses { get; } = new ObservableCollection<Course>();
-        
-        private readonly ICoursesService coursesService;
-        public HomeViewModel(ICoursesService coursesService)
+        private ICoursesService coursesService;
+
+        public CoursesViewModel(ICoursesService coursesService)
         {
             this.coursesService = coursesService;
             this.coursesService.GetUserCourses("user").ContinueWith((task) =>
@@ -32,6 +32,10 @@ namespace tutdesk.ViewModels
                         Courses.Add(new Course { Title = response.title, Progress = response.progressPercent, Image = task.Result });
                     });
                 }
+            });
+            ImageHelper.LoadFromWeb(new Uri("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCQ5CfcjmFVmEgOqDiXYT-to-veWt3hgBe_g&s")).ContinueWith((task) =>
+            {
+                Courses.Add(new Course { Title = "Курс 1", Progress = 10, Image = task.Result });
             });
         }
     }
