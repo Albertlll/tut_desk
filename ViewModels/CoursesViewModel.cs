@@ -6,15 +6,15 @@ using tutdesk.Models;
 
 namespace tutdesk.ViewModels
 {
-    public class HomeViewModel : ReactiveObject
+    public class CoursesViewModel : ReactiveObject
     {
         public ObservableCollection<Course> Courses { get; } = new ObservableCollection<Course>();
 
-        public HomeViewModel()
+        public CoursesViewModel()
         {
 
             ImageHelper.LoadFromWeb(new Uri("https://upload.wikimedia.org/wikipedia/commons/4/41/NewtonsPrincipia.jpg")).ContinueWith((task) => {
-                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
+                Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result, Progress = 50 });
                 Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
                 Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });
                 Courses.Add(new Course { Title = "Курс 1", Description = "Описание курса 1", Image = task.Result });

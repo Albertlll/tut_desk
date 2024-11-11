@@ -7,41 +7,35 @@
              CornerRadius="30" Background="White"
              ClipToBounds="True" MinWidth="1" MinHeight="1"
              xmlns:models="using:tutdesk.Models" 
-             Height="200"
-             Width="400"
+             Height="300"
+             Width="500"
              x:DataType="models:Course"> <!-- Укажите правильное пространство имен -->
 
 	<Grid RowDefinitions="3*, Auto, Auto" ColumnDefinitions="*">
 
 		<!-- Контейнер для изображения с соотношением 16:9 -->
-		<Grid Grid.Row="0" Margin="10">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="16*"/>
-				<RowDefinition Height="9*"/>
-			</Grid.RowDefinitions>
-			<Image Grid.RowSpan="2" Source="{Binding Image}" Stretch="UniformToFill" ClipToBounds="True"/>
-		</Grid>
+
+			<Border CornerRadius="15" ClipToBounds="True" Margin="20">
+				<Image Grid.RowSpan="2" Source="{Binding Image}" Stretch="UniformToFill" ClipToBounds="True"/>			
+			</Border>
 
 		<!-- Название курса -->
-		<TextBlock Grid.Row="1" TextAlignment="Center" Margin="10,5,10,5"
+		<TextBlock Grid.Row="1" TextAlignment="Center"
                    Text="{Binding Title}" FontSize="18" FontFamily="{StaticResource Montserrat}"
                    TextWrapping="Wrap" />
 
+		
 		<!-- Прогресс бар с процентом -->
 		<Grid Grid.Row="2" Margin="20,10,20,20" ColumnDefinitions="*, Auto">
-			<!-- Прогресс бар Фон (голубой) -->
-			<Border Background="#E0F7FA" CornerRadius="5">
-				<Grid>
-					<!-- Прогресс бар (синий прогресс) -->
-					<Border Background="#2196F3" CornerRadius="5"
-                            Width="{Binding Progress, Converter={StaticResource PercentageToWidthConverter}}"/>
-				</Grid>
-			</Border>
+			<!-- ProgressBar с округлыми краями -->
+			<ProgressBar Grid.Column="0" Height="20" Minimum="0" Maximum="100" Value="{Binding Progress}"
+						 Foreground="#95C1FF" Background="#CEE3FF" CornerRadius="20"/>
 
 			<!-- Процентное значение справа от ProgressBar -->
 			<TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"
-                       Text="{Binding Progress, StringFormat='{}{}%'}" FontSize="14"/>
+					   Text="{Binding Progress, StringFormat='{}{0}%'}" FontSize="14"/>
 		</Grid>
+
 
 	</Grid>
 

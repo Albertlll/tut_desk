@@ -6,7 +6,7 @@
              xmlns:vm="using:tutdesk.ViewModels"
              xmlns:components="clr-namespace:tutdesk.Views.Components"
              x:Class="tutdesk.Views.HomeView"
-             x:DataType="vm:HomeViewModel">
+             x:DataType="vm:CoursesViewModel">
 
     <DockPanel Margin="10">
 
