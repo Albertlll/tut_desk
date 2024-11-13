@@ -26,7 +26,16 @@ namespace tutdesk.Services.Impl
                 return null;
 
             var json = File.ReadAllText(_filePath);
+            if (json == null || json == string.Empty)
+            {
+                return null;
+            }
             return JsonSerializer.Deserialize<CurrentUser>(json);
         }
+        public static void DeleteUser()
+        {
+            File.WriteAllText(_filePath, "");
+        }
+
     }
 }

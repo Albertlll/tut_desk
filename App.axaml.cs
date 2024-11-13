@@ -10,6 +10,7 @@ using System.Security.Authentication.ExtendedProtection;
 using tutdesk.Services;
 using System.Net.Http;
 using System;
+using tutdesk.Services.Impl;
 
 namespace tutdesk;
 
@@ -24,14 +25,17 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
             // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
             DisableAvaloniaDataAnnotationValidation();
-            desktop.MainWindow = new MainWindow
+
+            DataService service = new DataService();
+
+            desktop.MainWindow = new AuthWindow
             {
-               DataContext = new MainWindowViewModel()
+                DataContext = new AuthViewModel(service),
             };
+
         }
 
         base.OnFrameworkInitializationCompleted();

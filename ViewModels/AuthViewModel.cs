@@ -20,9 +20,9 @@ namespace tutdesk.ViewModels
         [ObservableProperty] private string password = "";
 
         private readonly ILoginService loginService;
-        public AuthViewModel(ILoginService loginService) 
+        public AuthViewModel(DataService dataService) : base(dataService)
         {
-            this.loginService = loginService;
+            this.loginService = new LoginServiceImpl(new HttpClient());
         }
 
         [RelayCommand]

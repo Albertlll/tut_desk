@@ -1,0 +1,58 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+			 xmlns:vm="using:tutdesk.ViewModels"
+             x:Class="tutdesk.Views.ProfileView"
+			 x:DataType="vm:ProfileViewModel">
+	<UserControl.Styles>
+		<Style Selector="TextBlock">
+			<Setter Property="Margin" Value="15"/>
+			<Setter Property="Foreground" Value="Black"/>
+			<Setter Property="FontFamily" Value="Montserrat"/>
+			<Setter Property="FontSize" Value="22"/>
+		</Style>
+		<Style Selector="Button">
+			<Setter Property="Background" Value="#408FFF"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="FontSize" Value="18"/>
+			<Setter Property="Height" Value="40"/>
+			<Setter Property="Width" Value="150"/>
+			<Setter Property="CornerRadius" Value="25"/>
+			<Setter Property="Margin" Value="20 30"/>
+		</Style>
+	</UserControl.Styles>
+
+	<DockPanel Margin="10">
+		<Viewbox DockPanel.Dock="Top" Stretch="Uniform" Height="60">
+			<TextBlock TextAlignment="Center"
+                       Text="Мой профиль"
+                       FontSize="40"
+                       FontFamily="{StaticResource Montserrat}"
+                       TextWrapping="Wrap"
+                       Foreground="#333"
+                       FontWeight="Bold"/>
+		</Viewbox>
+		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+			<Border HorizontalAlignment="Left" CornerRadius="15" ClipToBounds="True" Margin="20 5">
+				<Image MaxHeight="350" MaxWidth="350" Source="{Binding UserProfile.Avatar}" Stretch="UniformToFill" ClipToBounds="True"/>
+			</Border>
+			<WrapPanel Orientation="Horizontal" Margin="20 5">
+				<TextBlock Text="Email: " Margin="0 0"/>
+				<TextBlock Text="{Binding UserProfile.Email}" FontWeight="Medium" Margin="0 0"/>
+			</WrapPanel>
+			<WrapPanel Orientation="Horizontal" Margin="20 5">
+				<TextBlock Text="Имя: " Margin="0 0"/>
+				<TextBlock Text="{Binding UserProfile.FirstName}" FontWeight="Medium" Margin="0 0"/>
+			</WrapPanel>
+			<WrapPanel Orientation="Horizontal" Margin="20 5">
+				<TextBlock Text="Фамилия: " Margin="0 0"/>
+				<TextBlock Text="{Binding UserProfile.LastName}" FontWeight="Medium" Margin="0 0"/>
+			</WrapPanel>
+			<Button Content="Выйти" VerticalAlignment="Bottom" HorizontalAlignment="Left" Command="{Binding LogoutCommand}"/>
+		</StackPanel>
+	</DockPanel>
+</UserControl>

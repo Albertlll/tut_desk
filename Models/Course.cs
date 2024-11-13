@@ -11,5 +11,6 @@ namespace tutdesk.Models
         public string? Title { get; set; }         // Название курса
         public int Progress { get; set; }          // Прогресс курса в процентах
 
+        public string[]? Modules { get; set; }
     }
 }

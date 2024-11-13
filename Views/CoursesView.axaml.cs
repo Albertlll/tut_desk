@@ -1,12 +1,14 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using tutdesk.Services.Impl;
+using tutdesk.ViewModels;
 
 namespace tutdesk.Views;
 
-public partial class SavedView : UserControl
+public partial class CoursesView : UserControl
 {
-    public SavedView()
+    public CoursesView()
     {
         InitializeComponent();
     }

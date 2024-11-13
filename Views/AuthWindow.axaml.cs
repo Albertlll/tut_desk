@@ -16,7 +16,6 @@ public partial class AuthWindow : Window
     public AuthWindow()
     {
         InitializeComponent();
-        DataContext = new AuthViewModel(new LoginServiceImpl(new System.Net.Http.HttpClient()));
         if(UserService.LoadUser() != null) 
         {
             MainWindow mainWindow = new MainWindow();
