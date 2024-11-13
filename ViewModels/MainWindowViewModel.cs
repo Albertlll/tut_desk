@@ -17,28 +17,65 @@ public partial class MainWindowViewModel : ViewModelBase
 
 
     [ObservableProperty]
+    public Module? selectedModule;
+
+    partial void OnSelectedModuleChanged(Module? value)
+    {
+         Console.WriteLine("Module Selected");
+        
+         if (value is not null && value.Lessons is not null)
+         {
+             Console.WriteLine("Module Selectedvfdvdf");
+
+             var instance = Activator.CreateInstance(typeof(LessonsViewModel), args: [_dataService, value.Lessons]) as ViewModelBase;
+             Console.WriteLine("Inst created");
+
+
+             if (instance is null) return;
+             CurrentPage = instance;
+         }
+    }
+
+    
+
+    // private void OnSelectedModuleChanged() {
+
+    //     Console.WriteLine("Module Selected");
+        
+    //     if (SelectedModule is not null && SelectedModule.Lessons is not null)
+    //     {
+    //         Console.WriteLine("Module Selectedvfdvdf");
+
+    //         var instance = Activator.CreateInstance(typeof(LessonsViewModel), args: [_dataService, SelectedModule.Lessons]) as ViewModelBase;
+    //         if (instance is null) return;
+    //         CurrentPage = instance;
+    //     }
+    // }
+
+
+    [ObservableProperty]
     private ViewModelBase _currentPage;
 
     public MainWindowViewModel(DataService service) : base(service)
     {
         SelectedCourse = service.SelectedCourse;
+        SelectedModule = service.SelectedModule;
+
+        
         _dataService = service;
         _dataService.PropertyChanged += DataService_PropertyChanged;
 
     }
 
 
+    
+
+
     private void DataService_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName == nameof(DataService.SelectedCourse))
         {
-            // Здесь вы можете обновить любое другое свойство или выполнить действия,
-            // которые должны произойти при изменении выбранного курса.
-
-
             SelectedCourse = _dataService?.SelectedCourse;
-
-            // OnPropertyChanged(nameof(SelectedCourse)); // Обновляем локальное свойство ViewModel
         }
     }
 
@@ -47,7 +84,6 @@ public partial class MainWindowViewModel : ViewModelBase
         new ListItemTemplate(typeof(ProfileViewModel), "Профиль"),
         new ListItemTemplate(typeof(CoursesViewModel), "Курсы"),
     };
-
 
 
     [ObservableProperty]

@@ -48,10 +48,10 @@ namespace tutdesk.ViewModels
                             return;
                         }
 
-                        string[] modules = new string[modulesResponse.Count];
+                         ObservableCollection<Module> modules = new ObservableCollection<Module>();
                         for(int i = 0; i < modulesResponse.Count; i++)
                         {
-                            modules[i] = modulesResponse[i].title;
+                            modules[i] = new Module {Title = modulesResponse[i].title};
                         }
                     
                         ImageHelper.LoadFromWeb(new Uri(response.avatarUrl)).ContinueWith((task) =>
@@ -63,10 +63,15 @@ namespace tutdesk.ViewModels
             });
             ImageHelper.LoadFromWeb(new Uri("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCQ5CfcjmFVmEgOqDiXYT-to-veWt3hgBe_g&s")).ContinueWith((task) =>
             {
-                Courses.Add(new Course { Title = "���� 1", Progress = 10, Image = task.Result });
+                Courses.Add(new Course { Title = "Курс 1", Progress = 10, Image = task.Result });
             });
             ImageHelper.LoadFromWeb(new Uri("https://upload.wikimedia.org/wikipedia/commons/4/41/NewtonsPrincipia.jpg")).ContinueWith((task) => {
-                Courses.Add(new Course { Title = "���� 1", Image = task.Result, Progress = 50, Modules = ["1", "2", "3", "4", "5"] });
+                Courses.Add(new Course { Title = "Курс 2", Image = task.Result, Progress = 50, Modules = [
+                    new Module { Title = "Пончики", Lessons = ["а нам", "все"] },
+                    new Module { Title = "Покемончики", Lessons = ["а нам", "все"] },
+                    new Module { Title = "Чикичики", Lessons = ["а нам", "все"] },
+
+                    ]});
             });
         }
 

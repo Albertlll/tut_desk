@@ -25,22 +25,58 @@ namespace tutdesk.ViewModels
             this.loginService = new LoginServiceImpl(new HttpClient());
         }
 
-        [RelayCommand]
-        private async Task Login()
-        {
-            var authResult = await loginService.Authenticate(Email, Password);
-            if(authResult is null)
-            {
-                ErrorMessage = "Неверная почта или пароль!";
-                return;
-            }
-            ErrorMessage = "";
+        // [RelayCommand]
+        // private async Task Login()
+        // {
+        //     var authResult = await loginService.Authenticate(Email, Password);
+        //     if(authResult is null)
+        //     {
+        //         ErrorMessage = "Неверная почта или пароль!";
+        //         return;
+        //     }
+        //     ErrorMessage = "";
 
+        //     CurrentUser currentUser = new CurrentUser();
+        //     currentUser.Id = authResult.userId;
+        //     currentUser.Email = authResult.email;
+        //     UserService.SaveUser(currentUser);
+        // }
+
+        
+
+
+
+
+
+
+
+
+
+        [RelayCommand]
+    private async Task Login()
+    {
+        if(Email == "im" && Password == "imgey")
+        {
             CurrentUser currentUser = new CurrentUser();
-            currentUser.Id = authResult.userId;
-            currentUser.Email = authResult.email;
+            currentUser.Id = "user1";
+            currentUser.Email = Email;
             UserService.SaveUser(currentUser);
         }
+        ErrorMessage = "Неверная почта или пароль!";
+        return;
+        /*var authResult = await loginService.Authenticate(Email, Password);
+        if(authResult is null)
+        {
+            ErrorMessage = "Неверная почта или пароль!";
+            return;
+        }
+        ErrorMessage = "";
+
+        CurrentUser currentUser = new CurrentUser();
+        currentUser.Id = authResult.userId;
+        currentUser.Email = authResult.email;
+        UserService.SaveUser(currentUser);*/
+    }
         
     }
 }

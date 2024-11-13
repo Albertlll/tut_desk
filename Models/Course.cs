@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Media.Imaging;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 
@@ -11,6 +12,6 @@ namespace tutdesk.Models
         public string? Title { get; set; }         // Название курса
         public int Progress { get; set; }          // Прогресс курса в процентах
 
-        public string[]? Modules { get; set; }
+        public ObservableCollection<Module> Modules { get; set; } = new ObservableCollection<Module>();    
     }
 }
