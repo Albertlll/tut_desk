@@ -5,7 +5,7 @@
              mc:Ignorable="d"
              xmlns:vm="using:tutdesk.ViewModels"
              xmlns:components="clr-namespace:tutdesk.Views.Components"
-             x:Class="tutdesk.Views.HomeView"
+             x:Class="tutdesk.Views.CoursesView"
              x:DataType="vm:CoursesViewModel">
 
     <DockPanel Margin="10">
@@ -16,12 +16,12 @@
                        FontSize="18" 
                        FontFamily="{StaticResource Montserrat}" 
                        TextWrapping="Wrap" 
-                       Foreground="#333" 
+                       Foreground="#333"  
                        FontWeight="Bold"/>
         </Viewbox>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ListBox ItemsSource="{Binding Courses}" Background="Transparent">
+            <ListBox ItemsSource="{Binding Courses}" Background="Transparent" SelectedItem="{Binding SelectedCourse,  Mode=TwoWay}">
                 
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>

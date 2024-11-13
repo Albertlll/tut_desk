@@ -15,6 +15,9 @@ namespace tutdesk.Models
         public string? LabelText { get; set; }     // Текст для метки, например "CS50x 2024 SQL"
         public int Progress { get; set; }          // Прогресс курса в процентах
 
+
+        public string[]? Modules { get; set; }
+
         // Вы можете добавить дополнительные свойства по необходимости, например:
 
         //  public string? Duration { get; set; }      // Длительность курса

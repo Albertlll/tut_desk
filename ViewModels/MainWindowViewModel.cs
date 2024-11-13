@@ -1,71 +1,96 @@
-﻿using ReactiveUI;
+﻿using System;
 using System.Collections.ObjectModel;
-
-
-using tutdesk.Views;
-
+using System.ComponentModel;
+using System.Windows.Input;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using tutdesk.Helpers;
+using tutdesk.Models;
+using tutdesk.Services;
 
 namespace tutdesk.ViewModels;
-public class MainWindowViewModel : ReactiveObject
+
+public partial class MainWindowViewModel : ViewModelBase
 {
-    private object _currentPage;
-    private object? _currentModule = null;
 
-    private PageViewModel _selectedPage;
 
-    public ObservableCollection<PageViewModel> Pages { get; } = new ObservableCollection<PageViewModel>();
-    public ObservableCollection<PageViewModel> Modules { get; } = new ObservableCollection<PageViewModel>();
+    private DataService? _dataService;
 
-    public object CurrentPage
-    {
-        get => _currentPage;
-        set => this.RaiseAndSetIfChanged(ref _currentPage, value);
+
+
+    public MainWindowViewModel(DataService service) : base(service) {
+        SelectedCourse = service.SelectedCourse;
+        _dataService = service;
+        _dataService.PropertyChanged += DataService_PropertyChanged;
+
     }
 
-    // public object CurrentModule
-    // {
-    //     get {
-    //         if (_currentModule != null) return _currentModule;
-    //     }
-    //     set => this.RaiseAndSetIfChanged(ref _currentPage, value);
-    // }
 
-    public PageViewModel SelectedPage
+    private void DataService_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-        get => _selectedPage;
-        set
+        if (e.PropertyName == nameof(DataService.SelectedCourse))
         {
-            this.RaiseAndSetIfChanged(ref _selectedPage, value);
-            if (value != null)
-            {
-                CurrentPage = value.View; // Переход на выбранную страницу
-            }
+            // Здесь вы можете обновить любое другое свойство или выполнить действия,
+            // которые должны произойти при изменении выбранного курса.
+
+
+            SelectedCourse = _dataService.SelectedCourse;
+
+            // OnPropertyChanged(nameof(SelectedCourse)); // Обновляем локальное свойство ViewModel
         }
     }
 
 
+    // public ICommand SendDataCommand { get; }
+
+    // public MainWindowViewModel() {
+    //     SendDataCommand = new RelayCommand(() => secondViewModel.ReceiveData("Hello from First"));
+    // }
 
 
-    public MainWindowViewModel()
+    [ObservableProperty]
+    public Course selectedCourse;
+
+
+    [ObservableProperty]
+    private ViewModelBase _currentPage;
+
+    public ObservableCollection<ListItemTemplate> Pages { get; } = new()
     {
-        // Инициализация страниц
-        Pages.Add(new PageViewModel("Профиль", new SavedView()));
-        Pages.Add(new PageViewModel("Курсы", new HomeView()));
-        // Pages.Add(new PageViewModel("Настройки", new SettingsView()));
+        // new ListItemTemplate(typeof(HomeViewModel), "house.png"),
+        // new ListItemTemplate(typeof(SavedViewModel), "folder.png"),
+        new ListItemTemplate(typeof(SavedViewModel), "Профиль"),
+        new ListItemTemplate(typeof(CoursesViewModel), "Курсы"),
+    };
 
-        // Установка начальной страницы
-        SelectedPage = Pages[0]; // Выбор первой страницы по умолчанию
-    }
+
+
+    [ObservableProperty]
+    private ListItemTemplate? _selectedListItem;
+
+     partial void OnSelectedListItemChanged(ListItemTemplate? value)
+     {
+        if (value is null) return;
+            var instance = Activator.CreateInstance(value.ModelType, args : _dataService);
+            if (instance is null) return;         
+            CurrentPage = (ViewModelBase)instance;
+        }
 }
 
-public class PageViewModel
-{
-    public string Title { get; }
-    public object View { get; }
+public class ListItemTemplate {
 
-    public PageViewModel(string title, object view)
-    {
-        Title = title;
-        View = view;
+    public ListItemTemplate(Type type, string label) {
+        ModelType = type;
+        Label = label;
+;
     }
+
+    // public string ListItemIcon { get; }
+    public Type ModelType { get; }
+    public string Label { get; }
+    
 }

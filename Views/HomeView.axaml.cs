@@ -5,11 +5,10 @@ using tutdesk.ViewModels;
 
 namespace tutdesk.Views;
 
-public partial class HomeView : UserControl
+public partial class CoursesView : UserControl
 {
-    public HomeView()
+    public CoursesView()
     {
         InitializeComponent();
-        DataContext = new CoursesViewModel();
     }
 }
