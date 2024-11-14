@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Трамп, Дональд" FontSize="36" FontWeight="Bold" Grid.Row="0" HorizontalAlignment="Center"/>
+        <TextBlock Text="Уроки" FontSize="36" FontWeight="Bold" Grid.Row="0" HorizontalAlignment="Center"/>
         
         <Border Background="White" CornerRadius="10" Margin="10" Grid.Row="1">
             <ScrollViewer>
@@ -24,9 +24,7 @@
 				    <ItemsControl ItemsSource="{Binding SelectedLesson.Context}">
 					    <ItemsControl.ItemTemplate>
 						    <DataTemplate>
-							    <StackPanel MinWidth="200" HorizontalAlignment="Stretch" Margin="5">
-								    <components:LessonPartCard/>
-							    </StackPanel>
+								<components:LessonPartCard/>
 						    </DataTemplate>
 					    </ItemsControl.ItemTemplate>
 				    </ItemsControl>
@@ -35,7 +33,7 @@
         </Border>
 
 <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" Margin="10">
-    <Button Content="Читать дальше" Background="#B8D1FF" Foreground="Black" Margin="5" Command="{Binding ContinueReadingCommand}" />
+    <Button Content="Читать дальше" Background="#B8D1FF" Foreground="Black" Margin="5" Command="{Binding ContinueReadingCommand}" IsEnabled="{Binding NextEnabled}"/>
     <Button Content="Закрыть курс" Background="#B8D1FF" Foreground="Black" Margin="5" Command="{Binding CloseCourseCommand}" />
     <Button Content="Прочитано" Background="#B8D1FF" Foreground="Black" Margin="5" Command="{Binding MarkAsReadCommand}" />
 </StackPanel>

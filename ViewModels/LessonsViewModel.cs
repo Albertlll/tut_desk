@@ -27,10 +27,16 @@ namespace tutdesk.ViewModels
         [ObservableProperty]
         private Lesson? selectedLesson;
 
+        [ObservableProperty]
+        private int nowLessonIndex = 0;
+
+
         // Collection of lessons
+
         public ObservableCollection<Lesson> Lessons { get; } = new ObservableCollection<Lesson> ();
 
         // Commands for buttons
+
         public ICommand ContinueReadingCommand { get; }
         public ICommand CloseCourseCommand { get; }
         public ICommand MarkAsReadCommand { get; }
@@ -46,7 +52,7 @@ namespace tutdesk.ViewModels
 
             this.dataService = service;
             this.lessonService = new LessonServiceImpl(new HttpClient());
-            lessonService.GetModuleLessons(module.Id).ContinueWith(response =>
+            lessonService.GetModuleLessons(module.Id).ContinueWith((response) =>
             {
                 List<GetLessonResponse>? responseList = response.Result;
                 if (response is null)
@@ -86,18 +92,37 @@ namespace tutdesk.ViewModels
 
         private void OnContinueReading()
         {
-            // Code to mark the current lesson as read
-            Console.WriteLine("Mark as Read button clicked");
+            if(NowLessonIndex == Lessons.Count - 1)
+            {
+                NextEnabled = false;
+                return;
+            }
+            NowLessonIndex += 1;
+            SelectedLesson = Lessons[NowLessonIndex];
         }
+
+        [ObservableProperty]
+        private bool nextEnabled = true;
+
+        private void OnNowLessonIndexChange(int value)
+        {
+            Console.WriteLine("value=" + value);
+            if (value == Lessons.Count())
+            {
+                NextEnabled = false;
+                return;
+            }
+            SelectedLesson = Lessons[value];
+
+        }
+
         private void OnCloseCourse()
         {
-            // Code to close the course (e.g., return to main menu)
-            Console.WriteLine("Close Course button clicked");
+ 
         }
 
         private void OnMarkAsRead()
         {
-            // Code to mark the current lesson as read
             Console.WriteLine("Mark as Read button clicked");
         }
     }
