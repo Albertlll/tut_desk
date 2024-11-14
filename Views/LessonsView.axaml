@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Lessons" FontSize="36" FontWeight="Bold" Grid.Row="0" HorizontalAlignment="Center"/>
+        <TextBlock Text="Трамп, Дональд" FontSize="36" FontWeight="Bold" Grid.Row="0" HorizontalAlignment="Center"/>
         
         <Border Background="White" CornerRadius="10" Margin="10" Grid.Row="1">
             <ScrollViewer>
