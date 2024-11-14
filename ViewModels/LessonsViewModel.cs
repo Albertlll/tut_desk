@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -15,11 +16,26 @@ namespace tutdesk.ViewModels
 {
     public partial class LessonsViewModel : ViewModelBase
     {
-        public LessonsViewModel(DataService service, string[] lessons) : base(service) {
-
-
-
-        }
+        [ObservableProperty]
+        public Module? selectedModule;
         
+        public ObservableCollection<Lesson> Lessons { get;}  = new ObservableCollection<Lesson>();
+        
+        public LessonsViewModel(DataService service, Lesson[] lessons) : base(service) {
+
+
+            Console.WriteLine(lessons);
+
+             
+
+            // if (service.SelectedModule.Lessons is null) return;
+
+             foreach (Lesson item in lessons)
+              {
+                 Console.WriteLine(item);
+                  Lessons.Add(item);
+              }
+            
+        }
     }
 }

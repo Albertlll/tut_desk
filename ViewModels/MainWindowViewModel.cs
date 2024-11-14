@@ -30,7 +30,6 @@ public partial class MainWindowViewModel : ViewModelBase
              var instance = Activator.CreateInstance(typeof(LessonsViewModel), args: [_dataService, value.Lessons]) as ViewModelBase;
              Console.WriteLine("Inst created");
 
-
              if (instance is null) return;
              CurrentPage = instance;
          }

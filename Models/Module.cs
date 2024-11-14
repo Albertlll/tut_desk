@@ -9,7 +9,7 @@ namespace tutdesk.Models
     {
         public string? Title { get; set; }         // Название курса
 
-        public string[]? Lessons { get; set; } //
+        public Lesson[]? Lessons { get; set; } //
 
     }
 }
