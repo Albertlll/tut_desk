@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="tutdesk.Views.Components.LessonPartCard"
+			 xmlns:models="using:tutdesk.Models"
+             Height="300"
+             Width="500"
+             x:DataType="models:LessonPart">
+	<StackPanel Margin="50, 25, 50, 20">
+        <TextBlock Text="{Binding Text}" Margin="10" TextWrapping="Wrap" FontSize="16" FontFamily="{StaticResource Montserrat}"/>
+		<Image Source="{Binding Image}" Stretch="UniformToFill" ClipToBounds="True" Margin="10"/>
+	</StackPanel>
+</UserControl>

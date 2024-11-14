@@ -24,8 +24,11 @@ namespace tutdesk.ViewModels
         [ObservableProperty]
         private Module? selectedModule;
 
+        [ObservableProperty]
+        private Lesson? selectedLesson;
+
         // Collection of lessons
-        public ObservableCollection<Lesson> Lessons { get; } = new ObservableCollection<Lesson>();
+        public ObservableCollection<Lesson> Lessons { get; } = new ObservableCollection<Lesson> ();
 
         // Commands for buttons
         public ICommand ContinueReadingCommand { get; }
@@ -40,6 +43,7 @@ namespace tutdesk.ViewModels
             ContinueReadingCommand = new RelayCommand(OnContinueReading);
             CloseCourseCommand = new RelayCommand(OnCloseCourse);
             MarkAsReadCommand = new RelayCommand(OnMarkAsRead);
+
             this.dataService = service;
             this.lessonService = new LessonServiceImpl(new HttpClient());
             lessonService.GetModuleLessons(module.Id).ContinueWith(response =>
@@ -74,6 +78,7 @@ namespace tutdesk.ViewModels
 
                     Lessons.Add(new Lesson { Id = lesson.lessonId, Title = lesson.title, Context = parts });
                 }
+                SelectedLesson = Lessons.First();
             });
             dataService.SelectedModule = module;
             dataService.SelectedModule.Lessons = Lessons;
