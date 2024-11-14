@@ -62,7 +62,7 @@ namespace tutdesk.ViewModels
                     });
                 }
             });
-            /*ImageHelper.LoadFromWeb(new Uri("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCQ5CfcjmFVmEgOqDiXYT-to-veWt3hgBe_g&s")).ContinueWith((task) =>
+            ImageHelper.LoadFromWeb(new Uri("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCQ5CfcjmFVmEgOqDiXYT-to-veWt3hgBe_g&s")).ContinueWith((task) =>
             {
                 Courses.Add(new Course { Title = "Курс 1", Progress = 10, Image = task.Result });
             });
@@ -74,7 +74,7 @@ namespace tutdesk.ViewModels
                         new Lesson {Title = "Отпускаю на яву",},
                         ] },
                     ]});
-            });*/
+            });
         }
 
         partial void OnSelectedCourseChanged(Course? value)
