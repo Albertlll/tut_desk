@@ -1,3 +1,4 @@
+using Avalonia.Controls.Chrome;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DynamicData;
@@ -67,10 +68,11 @@ namespace tutdesk.ViewModels
             });
             ImageHelper.LoadFromWeb(new Uri("https://upload.wikimedia.org/wikipedia/commons/4/41/NewtonsPrincipia.jpg")).ContinueWith((task) => {
                 Courses.Add(new Course { Title = "Курс 2", Image = task.Result, Progress = 50, Modules = [
-                    new Module {Id = "1", Title = "Пончики"},
-                    new Module { Id = "2", Title = "Покемончики"},
-                    new Module { Id = "3", Title = "Чикичики"},
-
+                    new Module { Title = "Пончики", Lessons = [
+                        new Lesson {Title = "У ааа еее"},
+                        new Lesson {Title = "я птицу счастья свою",},
+                        new Lesson {Title = "Отпускаю на яву",},
+                        ] },
                     ]});
             });*/
         }

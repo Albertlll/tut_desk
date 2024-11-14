@@ -90,6 +90,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     partial void OnSelectedListItemChanged(ListItemTemplate? value)
     {
+        SelectedCourse = null;
         if (value is null) return;
         var instance = Activator.CreateInstance(value.ModelType, args: _dataService);
         if (instance is null) return;
