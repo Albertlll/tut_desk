@@ -37,11 +37,5 @@ namespace tutdesk.ViewModels
             );
         }
 
-        [RelayCommand]
-        public Task Logout()
-        {
-            UserService.DeleteUser();
-            return Task.CompletedTask;
-        }
     }
 }

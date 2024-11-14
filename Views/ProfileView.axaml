@@ -52,7 +52,7 @@
 				<TextBlock Text="Фамилия: " Margin="0 0"/>
 				<TextBlock Text="{Binding UserProfile.LastName}" FontWeight="Medium" Margin="0 0"/>
 			</WrapPanel>
-			<Button Content="Выйти" VerticalAlignment="Bottom" HorizontalAlignment="Left" Command="{Binding LogoutCommand}"/>
+			<Button Content="Выйти" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="Button_Click"/>
 		</StackPanel>
 	</DockPanel>
 </UserControl>

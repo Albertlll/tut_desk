@@ -30,7 +30,7 @@ public partial class App : Application
             DisableAvaloniaDataAnnotationValidation();
 
             DataService service = new DataService();
-
+         
             if (UserService.LoadUser() != null)
             {
                 desktop.MainWindow = new MainWindow()
@@ -50,6 +50,8 @@ public partial class App : Application
 
         base.OnFrameworkInitializationCompleted();
     }
+
+    
 
     private void DisableAvaloniaDataAnnotationValidation()
     {

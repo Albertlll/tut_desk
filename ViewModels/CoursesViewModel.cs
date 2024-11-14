@@ -30,7 +30,7 @@ namespace tutdesk.ViewModels
             _dataService = service;
             coursesService = new CoursesServiceImpl(new System.Net.Http.HttpClient());
             modulesService = new ModulesServiceImpl(new System.Net.Http.HttpClient());
-            coursesService.GetUserCourses("user").ContinueWith((task) =>
+            coursesService.GetUserCourses(UserService.LoadUser().Id).ContinueWith((task) =>
             {
                 List<GetCourseResponse>? courses = task.Result;
                 if (courses is null)
@@ -48,10 +48,10 @@ namespace tutdesk.ViewModels
                             return;
                         }
 
-                        string[] modules = new string[modulesResponse.Count];
+                        ObservableCollection<Module> modules = new ObservableCollection<Module>();
                         for(int i = 0; i < modulesResponse.Count; i++)
                         {
-                            modules[i] = modulesResponse[i].title;
+                            modules.Add( new Module {Id = modulesResponse[i].moduleId, Title = modulesResponse[i].title});
                         }
                     
                         ImageHelper.LoadFromWeb(new Uri(response.avatarUrl)).ContinueWith((task) =>
@@ -61,13 +61,18 @@ namespace tutdesk.ViewModels
                     });
                 }
             });
-            ImageHelper.LoadFromWeb(new Uri("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCQ5CfcjmFVmEgOqDiXYT-to-veWt3hgBe_g&s")).ContinueWith((task) =>
+            /*ImageHelper.LoadFromWeb(new Uri("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCQ5CfcjmFVmEgOqDiXYT-to-veWt3hgBe_g&s")).ContinueWith((task) =>
             {
-                Courses.Add(new Course { Title = "���� 1", Progress = 10, Image = task.Result });
+                Courses.Add(new Course { Title = "Курс 1", Progress = 10, Image = task.Result });
             });
             ImageHelper.LoadFromWeb(new Uri("https://upload.wikimedia.org/wikipedia/commons/4/41/NewtonsPrincipia.jpg")).ContinueWith((task) => {
-                Courses.Add(new Course { Title = "���� 1", Image = task.Result, Progress = 50, Modules = ["1", "2", "3", "4", "5"] });
-            });
+                Courses.Add(new Course { Title = "Курс 2", Image = task.Result, Progress = 50, Modules = [
+                    new Module {Id = "1", Title = "Пончики"},
+                    new Module { Id = "2", Title = "Покемончики"},
+                    new Module { Id = "3", Title = "Чикичики"},
+
+                    ]});
+            });*/
         }
 
         partial void OnSelectedCourseChanged(Course? value)

@@ -12,5 +12,9 @@ namespace tutdesk.Services.Impl
     {
         [ObservableProperty]
         private Course? selectedCourse;
+
+        [ObservableProperty]
+        public Module? selectedModule;
+
     }
 }

@@ -43,11 +43,12 @@
 					<ScrollViewer>
 						<ListBox ItemsSource="{Binding SelectedCourse.Modules}"
 								 Background="White"
-								 BorderThickness="0">
+								 BorderThickness="0"
+								 SelectedItem="{Binding SelectedModule}">
 							<ListBox.ItemTemplate>
 								<DataTemplate>
 									<TextBlock
-									Text="{Binding}"
+									Text="{Binding Title}"
 									 FontFamily="{StaticResource Montserrat}"
 									 FontSize="20" Margin="10"/>
 								</DataTemplate>
