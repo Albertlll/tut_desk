@@ -1,25 +1,37 @@
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             xmlns:vm="using:tutdesk.ViewModels"
+             x:Class="tutdesk.Views.LessonsView"
+             x:DataType="vm:LessonsViewModel">
 
-namespace tutdesk.Views
-{
-    public partial class LessonsView : UserControl
-    {
-        public LessonsView()
-        {
-            InitializeComponent();
-        }
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        private void CloseCourse_Click(object sender, RoutedEventArgs e)
-        {
-            // Assuming MainWindow is your main window class
-            var mainWindow = new MainWindow();
-            mainWindow.Show();
-            
-            // Optionally, close the current window if needed
-            var parentWindow = this.GetParentWindow();
-            parentWindow?.Close();
-        }
-    }
-}
+        <TextBlock Text="Lessons" FontSize="36" FontWeight="Bold" Grid.Row="0" HorizontalAlignment="Center"/>
+        
+        <Border Background="White" CornerRadius="10" Margin="10" Grid.Row="1">
+            <TabControl ItemsSource="{Binding Lessons}">
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}" />
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+            </TabControl>
+        </Border>
+
+<StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" Margin="10">
+    <Button Content="Читать дальше" Background="#B8D1FF" Foreground="Black" Margin="5" Command="{Binding ContinueReadingCommand}" />
+    <Button Content="Закрыть курс" Background="#B8D1FF" Foreground="Black" Margin="5" Command="{Binding CloseCourseCommand}" />
+    <Button Content="Прочитано" Background="#B8D1FF" Foreground="Black" Margin="5" Command="{Binding MarkAsReadCommand}" />
+</StackPanel>
+
+    </Grid>
+
+</UserControl>
