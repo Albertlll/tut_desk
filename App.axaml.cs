@@ -31,10 +31,20 @@ public partial class App : Application
 
             DataService service = new DataService();
 
-            desktop.MainWindow = new AuthWindow
+            if (UserService.LoadUser() != null)
             {
-                DataContext = new AuthViewModel(service),
-            };
+                desktop.MainWindow = new MainWindow()
+                {
+                    DataContext = new MainWindowViewModel(service)
+                };
+            }
+            else
+            {
+                desktop.MainWindow = new AuthWindow
+                {
+                    DataContext = new AuthViewModel(service),
+                };
+            }
 
         }
 

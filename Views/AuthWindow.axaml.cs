@@ -16,10 +16,5 @@ public partial class AuthWindow : Window
     public AuthWindow()
     {
         InitializeComponent();
-        if(UserService.LoadUser() != null) 
-        {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-        }
     }
 }
